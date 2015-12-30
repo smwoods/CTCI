@@ -67,26 +67,26 @@ def one_away(s1, s2):
 	elif len(s1) < len(s2):
 		return s1 == s2[1:]
 
-# def StrCompression(instring):
-# 	retstring = []
-# 	count = 1
-# 	for i in range(0, len(instring)):
-# 		if i == len(instring) - 1:
-# 			if count > 1:
-# 				retstring += (instring[i] + str(count))
-# 			else:
-# 				retstring += instring[i]
-# 		elif instring[i] == instring[i+1]:
-# 			count += 1
-# 		else:
-# 			if count > 1:
-# 				retstring += (instring[i] + str(count))
-# 			else:
-# 				retstring += instring[i]
-# 			count = 1
-# 	if len(retstring) > len(instring):
-# 		return instring
-# 	return ''.join(retstring)
+def string_compression(string):
+	ret_string = []
+	count = 1
+	for i in range(0, len(string)):
+		if i == len(string) - 1:
+			if count > 1:
+				ret_string += (string[i] + str(count))
+			else:
+				ret_string += string[i]
+		elif string[i] == string[i+1]:
+			count += 1
+		else:
+			if count > 1:
+				ret_string += (string[i] + str(count))
+			else:
+				ret_string += string[i]
+			count = 1
+	if len(ret_string) >= len(string):
+		return string
+	return ''.join(ret_string)
 
 # def RotateMatrix(m):
 # 	n = len(m)
@@ -134,8 +134,8 @@ def main():
 	#print(check_permutation('assface', 'faceass'))
 	#print(urlify("Mr John Smith    ", 13))
 	#print(PalPerm("dowgaegod"))
-	print(one_away("abale", "abal"))
-	#print(StrCompression("aabcccccaaa"))
+	#print(one_away("abale", "abal"))
+	#print(string_compression("aabbccaaa"))
 	# print(RotateMatrix(matrix))
 
 

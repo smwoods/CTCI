@@ -49,23 +49,23 @@ def palindrome_permutation(string):
 				flag = 1
 	return True
 
-# def OneAway(s1, s2):
-# 	if s1 == s2:
-# 		return True
-
-# 	if s1[0] == s2[0]:
-# 		if len(s1) == 1 or len(s2) == 1:
-# 			if abs(len(s1) - len(s2)) <= 1:
-# 				return True
-# 			else:
-# 				return False
-# 		return OneAway(s1[1:], s2[1:])
-# 	elif len(s1) == len(s2):
-# 		return s1[1:] == s2[1:]
-# 	elif len(s1) > len(s2):
-# 		return s1[1:] == s2
-# 	elif len(s1) < len(s2):
-# 		return s1 == s2[1:]
+# 1.5 One Away
+def one_away(s1, s2):
+	if s1 == s2:
+		return True
+	if s1[0] == s2[0]:
+		if len(s1) == 1 or len(s2) == 1:
+			if abs(len(s1) - len(s2)) <= 1:
+				return True
+			else:
+				return False
+		return one_away(s1[1:], s2[1:])
+	elif len(s1) == len(s2):
+		return s1[1:] == s2[1:]
+	elif len(s1) > len(s2):
+		return s1[1:] == s2
+	elif len(s1) < len(s2):
+		return s1 == s2[1:]
 
 # def StrCompression(instring):
 # 	retstring = []
@@ -134,7 +134,7 @@ def main():
 	#print(check_permutation('assface', 'faceass'))
 	#print(urlify("Mr John Smith    ", 13))
 	#print(PalPerm("dowgaegod"))
-	#print(OneAway("pale", "bake"))
+	print(one_away("abale", "abal"))
 	#print(StrCompression("aabcccccaaa"))
 	# print(RotateMatrix(matrix))
 

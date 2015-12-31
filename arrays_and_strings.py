@@ -1,4 +1,5 @@
 #!/usr/local/bin/python3
+import math
 
 # 1.1 Is Unique
 def is_unique(string):
@@ -88,16 +89,21 @@ def string_compression(string):
 		return string
 	return ''.join(ret_string)
 
-# def RotateMatrix(m):
-# 	n = len(m)
-# 	ret_m = [[None]* n] * n
-# 	print(ret_m)
-# 	for i in range(0, n):
-# 		for j in range(0, n):
-# 			print(i, j)
-# 			ret_m[j][(n-1)-i] = m[i][j]
-# 			print(ret_m)
-# 	return ret_m
+# 1.7 Rotate Matrix
+def rotate_matrix(matrix, N):
+	for layer in range(N//2):
+		first = layer
+		last = (N-1) - layer
+		for i in range(first, last):
+			offset = i - first
+			top = matrix[first][i]
+			matrix[first][i] = matrix[last-offset][first]
+			matrix[last-offset][first] = matrix[last][last-offset]
+			matrix[last][last-offset] = matrix[i][last]
+			matrix[i][last] = top
+	return matrix
+
+
 
 # def edit_distance(str_A, str_B):
 # 	if len(str_A) == 0:
@@ -123,10 +129,10 @@ def string_compression(string):
 
 
 matrix = [
-	["1a23", "abb2", "4567", "a2f4"],
-	["3425", "bbbb", "eate", "7299"],
-	["6666", "eeee", "beef", "0426"],
-	["7777", "8888", "6729", "9910"],
+	["1", "2", "3", "4"],
+	["5", "6", "7", "8"],
+	["9", "10", "11", "12"],
+	["13", "14", "15", "16"],
 	]
 
 def main():
@@ -136,7 +142,7 @@ def main():
 	#print(PalPerm("dowgaegod"))
 	#print(one_away("abale", "abal"))
 	#print(string_compression("aabbccaaa"))
-	# print(RotateMatrix(matrix))
+	print(rotate_matrix(matrix, 4))
 
 
 

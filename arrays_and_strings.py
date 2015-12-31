@@ -103,6 +103,24 @@ def rotate_matrix(matrix, N):
 			matrix[i][last] = top
 	return matrix
 
+# 1.8 Zero Matrix
+def zero_matrix(matrix):
+	M = len(matrix)
+	N = len(matrix[0])
+	rows, cols = [], []
+	for i in range(0, M):
+		for j in range(0, N):
+			if matrix[i][j] == 0:
+				rows.append(i)
+				cols.append(j)
+	print(rows, cols)
+	for row in rows:
+		for j in range(N):
+			matrix[row][j] = 0
+	for col in cols:
+		for i in range(M):
+			matrix[i][col] = 0
+	return matrix
 
 
 # def edit_distance(str_A, str_B):
@@ -128,12 +146,18 @@ def rotate_matrix(matrix, N):
 # 	return dist[N-1][M-1]
 
 
-matrix = [
-	["1", "2", "3", "4"],
+matrix_str = [
+	["1", "2", "3", "0"],
 	["5", "6", "7", "8"],
 	["9", "10", "11", "12"],
 	["13", "14", "15", "16"],
 	]
+matrix_int = [
+	[0, 2, 2, 9],
+	[5, 6, 7, 7],
+	[3, 8, 10, 8],
+	[1, 3, 4, 0],
+	] 
 
 def main():
 	#print(is_unique('a?bjshdlk?r'))
@@ -142,7 +166,8 @@ def main():
 	#print(PalPerm("dowgaegod"))
 	#print(one_away("abale", "abal"))
 	#print(string_compression("aabbccaaa"))
-	print(rotate_matrix(matrix, 4))
+	#print(rotate_matrix(matrix, 4))
+	print(zero_matrix(matrix_int))
 
 
 

@@ -122,6 +122,9 @@ def zero_matrix(matrix):
 			matrix[i][col] = 0
 	return matrix
 
+# 1.9 String Rotation
+def string_rotation(s1, s2):
+	return s1 in s2 + s2
 
 # def edit_distance(str_A, str_B):
 # 	if len(str_A) == 0:
@@ -167,7 +170,8 @@ def main():
 	#print(one_away("abale", "abal"))
 	#print(string_compression("aabbccaaa"))
 	#print(rotate_matrix(matrix, 4))
-	print(zero_matrix(matrix_int))
+	#print(zero_matrix(matrix_int))
+	print(string_rotation('waterbottle', 'erbottlewat'))
 
 
 

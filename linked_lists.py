@@ -23,6 +23,21 @@ def remove_dups(linked_list):
 				return linked_list
 	return linked_list
 
+# 2.2 Return Kth to Last
+def kth_to_last(linked_list, k):
+	trailing = linked_list.head
+	leading = trailing
+	for i in range(k-1):
+		if not leading.next:
+			print('Invalid request')
+			return
+		leading = leading.next
+	while leading.next:
+		leading = leading.next
+		trailing = trailing.next
+	return trailing
+
+
 
 
 
@@ -30,14 +45,11 @@ def remove_dups(linked_list):
 
 def main():
 	ll = SinglyLinkedList()
-	ll.append_to_tail(1)
-	ll.append_to_tail(1)
-	ll.append_to_tail(1)
-	ll.append_to_tail(1)
-	ll.append_to_tail(1)
-	ll.append_to_tail(2)
-	ll.append_to_tail(1)
-	ll = remove_dups(ll)
+	for i in range(10):
+		ll.append_to_tail(i)
 	ll.print_list()
+	kth = kth_to_last(ll, 4)
+	print(kth.data)
+
 
 main()

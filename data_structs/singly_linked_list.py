@@ -73,6 +73,15 @@ class SinglyLinkedList(object):
 			length += 1
 		return length
 
+	def join_lists(self, linked_list):
+		if self.head == None:
+			self.head = linked_list.head
+		else:
+			current = self.head
+			while current.next:
+				current = current.next
+			current.next = linked_list.head
+
 	def print_list(self):
 		if self.head == None:
 			print('Empty list')
@@ -84,16 +93,13 @@ class SinglyLinkedList(object):
 			print(current.data)
 
 # def main():
-# 	ll = SinglyLinkedList()
+# 	ll1 = SinglyLinkedList()
 # 	for i in range(10):
-# 		ll.append_to_tail(i)
-# 	ll.delete_node(8)
-# 	ll.delete_node(0)
-# 	ll.print_list()
-# 	ll.reverse_list()
-# 	ll.print_list()
-# 	ll.delete_node(9)
-# 	ll.print_list()
-# 	print(ll.length())
+# 		ll1.append_to_tail(i)
+# 	ll2 = SinglyLinkedList()
+# 	for i in range(10):
+# 		ll2.append_to_tail(i)
+# 	ll1.join_lists(ll2)
+
 
 # main()

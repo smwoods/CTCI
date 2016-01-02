@@ -124,7 +124,7 @@ def zero_matrix(matrix):
 
 # 1.9 String Rotation
 def string_rotation(s1, s2):
-	return s1 in s2 + s2
+	return (s1 in s2 + s2)
 
 # def edit_distance(str_A, str_B):
 # 	if len(str_A) == 0:
@@ -149,30 +149,30 @@ def string_rotation(s1, s2):
 # 	return dist[N-1][M-1]
 
 
-matrix_str = [
-	["1", "2", "3", "0"],
-	["5", "6", "7", "8"],
-	["9", "10", "11", "12"],
-	["13", "14", "15", "16"],
-	]
-matrix_int = [
-	[0, 2, 2, 9],
-	[5, 6, 7, 7],
-	[3, 8, 10, 8],
-	[1, 3, 4, 0],
-	] 
+# matrix_str = [
+# 	["1", "2", "3", "0"],
+# 	["5", "6", "7", "8"],
+# 	["9", "10", "11", "12"],
+# 	["13", "14", "15", "16"],
+# 	]
+# matrix_int = [
+# 	[0, 2, 2, 9],
+# 	[5, 6, 7, 7],
+# 	[3, 8, 10, 8],
+# 	[1, 3, 4, 0],
+# 	] 
 
-def main():
-	#print(is_unique('a?bjshdlk?r'))
-	#print(check_permutation('assface', 'faceass'))
-	#print(urlify("Mr John Smith    ", 13))
-	#print(PalPerm("dowgaegod"))
-	#print(one_away("abale", "abal"))
-	#print(string_compression("aabbccaaa"))
-	#print(rotate_matrix(matrix, 4))
-	#print(zero_matrix(matrix_int))
-	print(string_rotation('waterbottle', 'erbottlewat'))
+# def main():
+# 	print(is_unique('a?bjshdlk?r'))
+# 	print(check_permutation('assface', 'faceass'))
+# 	print(urlify("Mr John Smith    ", 13))
+# 	print(PalPerm("dowgaegod"))
+# 	print(one_away("abale", "abal"))
+# 	print(string_compression("aabbccaaa"))
+# 	print(rotate_matrix(matrix, 4))
+# 	print(zero_matrix(matrix_int))
+# 	print(string_rotation('waterbottle', 'erbottlewat'))
 
 
 
-main()
+# main()

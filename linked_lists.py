@@ -59,17 +59,72 @@ def partition(linked_list, x):
 		current = current.next
 	return partitioned
 
+# 2.5 Sum Lists
+def sum_lists(head1, head2, sum_list):
+	while head1 or head2:
+		if not head1:
+			sum_list.append_to_tail(head2.data)
+			return sum_lists(None, head2.next, sum_list)
+		elif not head2:
+			sum_list.append_to_tail(head1.data, sum_list)
+			return sum_lists(head1.next, None)
+		else:
+			total = head1.data + head2.data
+			if total >= 10:
+				if head1.next:
+					head1.next.data += 1
+					sum_list.append_to_tail(total % 10)
+					return sum_lists(head1.next, head2.next, sum_list)
+				elif head2.next:
+					head2.next.data += 1
+					sum_list.append_to_tail(total % 10)
+					return sum_lists(head1.next, head2.next, sum_list)
+				else:
+					sum_list.append_to_tail(total % 10)
+					sum_list.append_to_tail(1)
+					return sum_lists(head1.next, head2.next, sum_list)
+			else:
+				sum_list.append_to_tail(total)
+				return sum_lists(head1.next, head2.next, sum_list)
+	return sum_list
+
+# 2.5 Sum Lists (reverse)
+def reverse_sum_lists(ll1, ll2):
+	head1 = ll1.head
+	head2 = ll2.head
+	if head1 == None and head2 == None:
+		return sum_list
+	length1 = ll1.length()
+	length2 = ll2.length()
+	diff = length1 - length2
+	while diff != 0:
+		if diff > 0:
+			ll2.insert_at_head(0)
+			diff -= 1
+		elif diff < 0:
+			ll1.insert_at_head(0)
+			diff += 1
+	ll1.reverse_list()
+	ll2.reverse_list()
+	sum_list = SinglyLinkedList()
+	sum_list = sum_lists(ll1.head, ll2.head, sum_list)
+	sum_list.reverse_list()
+	return sum_list
+
 
 
 def main():
-	ll = SinglyLinkedList()
-	for i in range(10):
-		ll.append_to_tail(random.randint(1, 20))
-	middle = ll.head.next.next.next
-	delete_middle_node(middle)
-	ll.print_list()
-	partitioned = partition(ll, 10)
-	partitioned.print_list()
+	ll1 = SinglyLinkedList()
+	for i in range(7, 9):
+		ll1.append_to_tail(i)
+	ll2 = SinglyLinkedList()
+	for i in range(3, 6):
+		ll2.append_to_tail(i)
+	ll3 = SinglyLinkedList()
+	ll1.print_list()
+	ll2.print_list()
+	sum_list = reverse_sum_lists(ll1, ll2)
+	sum_list.print_list()
 
 
 main()

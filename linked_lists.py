@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 from data_structs.singly_linked_list import SinglyLinkedList
+import random
 
 # 2.1 Remove Dups
 def remove_dups(linked_list):
@@ -46,18 +47,29 @@ def delete_middle_node(node):
 	else:
 		node.next = None
 
-
+# 2.4 Partition
+def partition(linked_list, x):
+	partitioned = SinglyLinkedList()
+	current = linked_list.head
+	while current != None:
+		if current.data >= x:
+			partitioned.append_to_tail(current.data)
+		else:
+			partitioned.insert_at_head(current.data)
+		current = current.next
+	return partitioned
 
 
 
 def main():
 	ll = SinglyLinkedList()
 	for i in range(10):
-		ll.append_to_tail(i)
-	ll.print_list()
+		ll.append_to_tail(random.randint(1, 20))
 	middle = ll.head.next.next.next
 	delete_middle_node(middle)
 	ll.print_list()
+	partitioned = partition(ll, 10)
+	partitioned.print_list()
 
 
 main()

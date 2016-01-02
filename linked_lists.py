@@ -159,21 +159,33 @@ def intersection(ll1, ll2):
 	print('No intersection')
 	return None
 
+# 2.8 Loop Detection
+def loop_detection(linked_list):
+	fast = linked_list.head
+	slow = linked_list.head
+	while True:
+		if fast.next.next:
+			fast = fast.next.next
+		else:
+			print('No loop')
+			return None
+		slow = slow.next
+		if fast == slow:
+			break
+	slow = linked_list.head
+	while fast != slow:
+		print(slow.data, fast.data)
+		fast = fast.next
+		slow = slow.next
+	return fast
+
 # def main():
 # 	ll1 = SinglyLinkedList()
-# 	for i in range(1, 8):
-# 		ll1.append_to_tail(random.randint(0, 10))
-# 	ll2 = SinglyLinkedList()
-# 	for i in range(1, 8):
-# 		ll2.append_to_tail(random.randint(0, 10))
-# 	ll3 = SinglyLinkedList()
-# 	for i in range(1, 8):
-# 		ll3.append_to_tail(random.randint(0, 10))
-# 	ll1.join_lists(ll3)
-# 	ll2.join_lists(ll3)
+# 	for i in range(8):
+# 		ll1.append_to_tail(i)
 # 	ll1.print_list()
-# 	ll2.print_list()
-# 	intersect = intersection(ll1, ll2)
-# 	print(intersect.data)
+# 	ll1.head.next.next.next.next.next.next = ll1.head.next.next.next.next
+# 	loop_node = loop_detection(ll1)
+# 	if loop_node: print(loop_node.data)
 
 # main()

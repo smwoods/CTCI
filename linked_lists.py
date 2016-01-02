@@ -111,20 +111,34 @@ def reverse_sum_lists(ll1, ll2):
 	sum_list.reverse_list()
 	return sum_list
 
+# 2.6 Palindrome
+def palindrome(linked_list):
+	stack = []
+	length = linked_list.length()
+	midpoint = length // 2
+	current = linked_list.head
+	while midpoint != 0:
+		stack.append(current.data)
+		current = current.next
+		midpoint -= 1
+	if length % 2 == 1:
+		current = current.next
+	while current:
+		if current.data == stack.pop():
+			current = current.next
+		else:
+			return False
+	return True
 
 
 def main():
 	ll1 = SinglyLinkedList()
-	for i in range(7, 9):
+	for i in range(1, 8):
 		ll1.append_to_tail(i)
-	ll2 = SinglyLinkedList()
-	for i in range(3, 6):
-		ll2.append_to_tail(i)
-	ll3 = SinglyLinkedList()
+	for i in range(5, 0, -1):
+		ll1.append_to_tail(i)
 	ll1.print_list()
-	ll2.print_list()
-	sum_list = reverse_sum_lists(ll1, ll2)
-	sum_list.print_list()
+	print(palindrome(ll1))
 
 
 main()

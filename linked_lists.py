@@ -14,6 +14,7 @@ def remove_dups(linked_list):
 				continue
 			else:
 				current.next = None
+				linked_list.tail = current
 				return linked_list
 		else:
 			dup_ct[current.next.data] = 1
@@ -37,7 +38,13 @@ def kth_to_last(linked_list, k):
 		trailing = trailing.next
 	return trailing
 
-
+# 2.3 Delete Middle Node
+def delete_middle_node(node):
+	node.data = node.next.data
+	if node.next.next:
+		node.next = node.next.next
+	else:
+		node.next = None
 
 
 
@@ -48,8 +55,9 @@ def main():
 	for i in range(10):
 		ll.append_to_tail(i)
 	ll.print_list()
-	kth = kth_to_last(ll, 4)
-	print(kth.data)
+	middle = ll.head.next.next.next
+	delete_middle_node(middle)
+	ll.print_list()
 
 
 main()

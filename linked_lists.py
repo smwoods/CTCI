@@ -130,15 +130,50 @@ def palindrome(linked_list):
 			return False
 	return True
 
+# 2.7 Intersection
+def intersection(ll1, ll2):
+	current1 = ll1.head
+	current2 = ll2.head
+	while current1.next: current1 = current1.next
+	while current2.next: current2 = current2.next
+	if current1 != current2:
+		print('No intersection')
+		return None
+	length1 = ll1.length()
+	length2 = ll2.length()
+	diff = length1 - length2
+	current1 = ll1.head
+	current2 = ll2.head
+	while diff != 0:
+		if diff > 0:
+			current1 = current1.next
+			diff -= 1
+		elif diff < 0:
+			current2 = current2.next
+			diff += 1
+	while current1 and current2:
+		if current1 == current2:
+			return current1
+		current1 = current1.next
+		current2 = current2.next
+	print('No intersection')
+	return None
 
-def main():
-	ll1 = SinglyLinkedList()
-	for i in range(1, 8):
-		ll1.append_to_tail(i)
-	for i in range(5, 0, -1):
-		ll1.append_to_tail(i)
-	ll1.print_list()
-	print(palindrome(ll1))
+# def main():
+# 	ll1 = SinglyLinkedList()
+# 	for i in range(1, 8):
+# 		ll1.append_to_tail(random.randint(0, 10))
+# 	ll2 = SinglyLinkedList()
+# 	for i in range(1, 8):
+# 		ll2.append_to_tail(random.randint(0, 10))
+# 	ll3 = SinglyLinkedList()
+# 	for i in range(1, 8):
+# 		ll3.append_to_tail(random.randint(0, 10))
+# 	ll1.join_lists(ll3)
+# 	ll2.join_lists(ll3)
+# 	ll1.print_list()
+# 	ll2.print_list()
+# 	intersect = intersection(ll1, ll2)
+# 	print(intersect.data)
 
-
-main()
+# main()

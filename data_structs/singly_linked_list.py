@@ -1,6 +1,11 @@
 #!/usr/local/bin/python3
-from nodes import Node
 
+class Node(object):
+
+	def __init__(self, data):
+		self.next = None
+		self.data = data
+		
 class SinglyLinkedList(object):
 
 	def __init__(self):

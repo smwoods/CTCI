@@ -1,5 +1,5 @@
 #!/usr/local/bin/python3
-from data_structs.graphs import GraphNode, DirectedGraph, BTreeNode
+from data_structs.graphs import GraphNode, DirectedGraph, BTreeNode, BST
 from data_structs.singly_linked_list import SinglyLinkedList
 # 4.1 Route Between Nodes (DFS)
 def route_between_nodes_depth(start, end):
@@ -28,7 +28,6 @@ def route_between_nodes_breadth(start, end):
 
 # 4.2 Minimal Tree
 def minimal_tree(arr, st_index, end_index):
-	print('st, end', st_index, end_index)
 	if end_index < st_index:
 		return None
 	midpoint = (st_index + end_index) // 2
@@ -37,7 +36,7 @@ def minimal_tree(arr, st_index, end_index):
 	root.right = minimal_tree(arr, midpoint+1, end_index)
 	return root
 
-# 4.2 List of Depths
+# 4.3 List of Depths
 def list_of_depths(root, depth=0, depth_list=[]):
 	if len(depth_list) <= depth:
 		depth_list += [SinglyLinkedList()]
@@ -46,7 +45,23 @@ def list_of_depths(root, depth=0, depth_list=[]):
 	if root.right: list_of_depths(root.right, depth+1, depth_list)
 	return depth_list
 
-
+# 4.4 Check Balanced
+def check_balanced(root):
+	if root.left:
+		left_height = check_balanced(root.left)
+	else:
+		left_height = 0
+	if root.right:
+		right_height = check_balanced(root.right)
+	else:
+		right_height = 0
+	if left_height != -1 and right_height != -1:
+		if abs(left_height - right_height) > 1:
+			return -1
+		else:
+			return 1 + max(left_height, right_height)
+	else:
+		return -1
 
 
 # For testing
@@ -70,11 +85,16 @@ def main():
 	# for node in nodes:
 	# 	dir_graph.insert_node(node)
 	# print(route_between_nodes_breadth(nodes[5], nodes[0]))
-	arr = [i for i in range(16)]
+	arr = [i for i in range(63)]
 	min_tree_root = minimal_tree(arr, 0, len(arr)-1)
-	depth_list = list_of_depths(min_tree_root)
-	for x in depth_list:
-		x.print_list()
+	bst = BST()
+	bst.insert_node(5)
+	bst.insert_node(3)
+	bst.insert_node(1)
+	bst.insert_node(4)
+	bst.insert_node(6)
+	bst.insert_node(7)
+	print(check_balanced(bst.root))
 
 	
 

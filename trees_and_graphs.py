@@ -63,6 +63,26 @@ def check_balanced(root):
 	else:
 		return -1
 
+# 4.5 Validate BST
+def validate_bst(root, floor=None, ceil=None):
+	if floor != None:
+		if root.data < floor:
+			return False
+	if ceil != None:
+		if root.data > ceil:
+			return False
+	if root.left:
+		new_ceil = root.data
+		left_val = validate_bst(root.left, floor, new_ceil)
+	else:
+		left_val = True
+	if root.right:
+		new_floor = root.data
+		right_val = validate_bst(root.right, new_floor, ceil)
+	else:
+		right_val = True
+	return (left_val and right_val)
+
 
 # For testing
 def print_tree(root):
@@ -87,14 +107,11 @@ def main():
 	# print(route_between_nodes_breadth(nodes[5], nodes[0]))
 	arr = [i for i in range(63)]
 	min_tree_root = minimal_tree(arr, 0, len(arr)-1)
-	bst = BST()
-	bst.insert_node(5)
-	bst.insert_node(3)
-	bst.insert_node(1)
-	bst.insert_node(4)
-	bst.insert_node(6)
-	bst.insert_node(7)
-	print(check_balanced(bst.root))
+	nodes = [BTreeNode(i) for i in range(10)]
+	root = nodes[6]
+	root.right = nodes[7]
+	root.right.right = nodes[8]
+	print(validate_bst(min_tree_root))
 
 	
 

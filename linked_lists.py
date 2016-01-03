@@ -180,12 +180,6 @@ def loop_detection(linked_list):
 	return fast
 
 # def main():
-# 	ll1 = SinglyLinkedList()
-# 	for i in range(8):
-# 		ll1.append_to_tail(i)
-# 	ll1.print_list()
-# 	ll1.head.next.next.next.next.next.next = ll1.head.next.next.next.next
-# 	loop_node = loop_detection(ll1)
-# 	if loop_node: print(loop_node.data)
+# 	insert test cases
 
 # main()

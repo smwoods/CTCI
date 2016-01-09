@@ -83,6 +83,63 @@ def validate_bst(root, floor=None, ceil=None):
 		right_val = True
 	return (left_val and right_val)
 
+# 4.6 Successor
+def successor(node):
+	if node.right:
+		successor = node.right
+		while successor.left:
+			successor = successor.left
+			return successor
+	elif node.parent:
+		while node.parent:
+			if node.parent.left == node:
+				return parent
+			else:
+				node = node.parent
+		return None
+
+	else:
+		return None
+
+# 4.7 Build Order
+# def build_order(projects, dependencies):
+
+# 4.8 First Common Ancestor
+# def first_common_ancestor(root, node1, node2):
+
+# 4.9 BST Sequences
+# def bst_sequences(root):
+# 	result = []
+
+# 4.10 Check Subtree
+NULL_NODE = -9999
+def check_subtree(tree, subtree):
+	result_tree = []
+	result_subtree = []	
+	preorder_with_null(tree.root, result_tree)
+	preorder_with_null(subtree.root, result_subtree)
+	tree_string = ''.join(str(x) for x in result_tree)
+	subtree_string = ''.join(str(x) for x in result_subtree)
+	return subtree_string in tree_string
+
+def preorder_with_null(root, result):
+	if root == None:
+		return
+	result += [root.data]
+	if root.left:
+		preorder_with_null(root.left, result)
+	else:
+		result += [NULL_NODE]
+	if root.right:
+		preorder_with_null(root.right, result)
+	else:
+		result += [NULL_NODE]
+
+
+
+
+	
+
 
 # For testing
 def print_tree(root):
@@ -92,26 +149,19 @@ def print_tree(root):
 
 
 def main():
-	# nodes = [GraphNode(i) for i in range(6)]
-	# nodes[0].add_child(nodes[1])
-	# nodes[0].add_child(nodes[2])
-	# nodes[1].add_child(nodes[3])
-	# nodes[1].add_child(nodes[4])
-	# nodes[2].add_child(nodes[3])
-	# nodes[2].add_child(nodes[4])
-	# nodes[3].add_child(nodes[4])
-	# nodes[4].add_child(nodes[5])
-	# dir_graph = DirectedGraph()
-	# for node in nodes:
-	# 	dir_graph.insert_node(node)
-	# print(route_between_nodes_breadth(nodes[5], nodes[0]))
-	arr = [i for i in range(63)]
-	min_tree_root = minimal_tree(arr, 0, len(arr)-1)
-	nodes = [BTreeNode(i) for i in range(10)]
-	root = nodes[6]
-	root.right = nodes[7]
-	root.right.right = nodes[8]
-	print(validate_bst(min_tree_root))
+	# projects = 'a b c d e f'.split()
+	# dep = [('d', 'a'), ('b', 'f'), ('d', 'b'), ('a', 'f'), ('c', 'd')]
+	# print(build_order(projects, dep))
+	tree = BST()
+	sub = BST()
+	ins1 = [10, 5, 3, 7, 1, 4, 20, 15, 17, 25, 28]
+	ins2 = [20, 15, 25, 17, 28]
+	for i in ins1:
+		tree.insert_node(i)
+	for j in ins2:
+		sub.insert_node(j)
+	print(check_subtree(tree, sub))
+
 
 	
 

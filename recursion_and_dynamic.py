@@ -60,7 +60,6 @@ def magic_index(arr, start=0, end=None):
 
 # 8.4 Power Set
 def power_set(in_set):
-	
 	if len(in_set) == 1:
 		return [in_set, []]
 	return_set = []
@@ -73,6 +72,21 @@ def power_set(in_set):
 	return_set += not_included
 	return return_set
 
+# 8.5 Recursive Multiply
+def recursive_multiply(x, y):
+	bigger = max(x, y)
+	smaller = min(x, y)
+	return multiply(smaller, bigger)
+
+def multiply(small, big):
+	if small == 0: return 0
+	if small == 1: return big
+	s = small >> 1
+	half = recursive_multiply(s, big)
+	if small % 2 == 0:
+		return half + half
+	else:
+		return half + half + big
 
 def main():
 	# matrix = [
@@ -83,10 +97,7 @@ def main():
 	# 	[1, 1, 1, 0, 1],
 	# ]
 	# magic = [-10, -5, 0, 1, 3, 5, 7, 9, 10, 11, 12, 13, 14, 16, 20]
-	# print(magic_index(magic))
-	all_sets = power_set([1, 2, 3])
-	print()
-	for each in all_sets:
-		print(each)
+	print(recursive_multiply(3, 40))
+
 
 main()

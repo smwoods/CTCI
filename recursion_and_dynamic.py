@@ -1,4 +1,5 @@
 #!/usr/local/bin/python3
+from copy import deepcopy
 
 # 8.1 Triple Step
 def triple_step(n):
@@ -20,7 +21,10 @@ def robot_in_a_grid(grid):
 	visited = [[0 for _ in range(cols)] for _ in range(rows)]
 	visited[0][0] = 1
 	path = []
-	return get_path(grid, visited, rows-1, cols-1, path)
+	if get_path(grid, visited, rows-1, cols-1, path):
+		return path
+	else:
+		return False
 
 def get_path(grid, visited, row, col, path):
 	if row < 0 or col < 0 or grid[row][col] == 0:
@@ -36,13 +40,53 @@ def get_path(grid, visited, row, col, path):
 		visited[row][col] = 1
 		return success
 
+# 8.3 Magic Index
+def magic_index(arr, start=0, end=None):
+	if end == None: 
+		end = len(arr) - 1
+	if end < start:
+		return -1
+	mid = (start + end) // 2
+	if arr[mid] == mid:
+		return mid
+	
+	left_index = min(arr[mid], mid-1)
+	left = magic_index(arr, start, left_index)
+	if left >= 0:
+		return left
+	right_index = max(arr[mid], mid+1)
+	right = magic_index(arr, right_index, end)
+	return right
+
+# 8.4 Power Set
+def power_set(in_set):
+	
+	if len(in_set) == 1:
+		return [in_set, []]
+	return_set = []
+	item = in_set.pop()
+	not_included = power_set(in_set)
+	included = deepcopy(not_included)
+	for subset in included:
+		subset.append(item)
+	return_set += included
+	return_set += not_included
+	return return_set
+
+
 def main():
-	matrix = [
-		[1, 0, 1, 0, 1],
-		[1, 1, 1, 1, 1],
-		[1, 1, 0, 0, 1],
-		[1, 1, 0, 0, 1]
-	]
-	print(robot_in_a_grid(matrix))
+	# matrix = [
+	# 	[1, 0, 1, 0, 1],
+	# 	[1, 1, 0, 1, 1],
+	# 	[1, 1, 0, 0, 1],
+	# 	[1, 0, 0, 0, 1],
+	# 	[1, 1, 1, 0, 1],
+	# ]
+	# magic = [-10, -5, 0, 1, 3, 5, 7, 9, 10, 11, 12, 13, 14, 16, 20]
+	# print(magic_index(magic))
+	all_sets = power_set([1, 2, 3])
+	print()
+	for each in all_sets:
+		print(each)
 
 main()
